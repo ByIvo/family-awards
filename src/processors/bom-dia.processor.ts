@@ -7,24 +7,27 @@ export const BomDiaProcessor = {
   run(messages: Messages): ProcessorResult {
     
     const regexes = [
-      /\bbom\s+dia+\b/iu
+      /\bbom\s+dia+\b/iu,
+      /^d+i+a+$/iu,
     ];
 
     const results: Record<string, number> = {};
     const remanescent: Messages = [];
+    const processed: Messages = [];
 
     for (const m of messages) {
       const t = m.message ?? "";
       const ok = regexes.some(r => r.test(t));
       if (ok) {
         results[m.author] = (results[m.author] || 0) + 1;
+        processed.push(m);
       } else {
         remanescent.push(m);
       }
     }
 
     return {
-      remanescent, results
+      remanescent, results, processed
     };
   }
 }

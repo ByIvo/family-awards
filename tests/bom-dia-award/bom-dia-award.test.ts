@@ -21,7 +21,7 @@ describe("Bom dia Award", () => {
   it('should process bom dia messages', () => {
     const result = BomDiaProcessor.run(messages);
     expect(result.results).toEqual({
-      "Gueto": 2
+      "Gueto": 7
     });
   });
 });
