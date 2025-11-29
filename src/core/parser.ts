@@ -1,6 +1,9 @@
 import * as fs from "fs";
 import { Messages, Message } from "./types";
 
+// TODO Handle not existing files
+// TODO Handle invalid lines
+
 export function parseMessagesFromFile(filePath: string): Messages {
     const raw = fs.readFileSync(filePath, "utf8");
     const lines = raw.split(/\r?\n/);

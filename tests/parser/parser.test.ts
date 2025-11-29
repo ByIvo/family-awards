@@ -47,7 +47,6 @@ describe("Parser", () => {
     expect(rebuilt).toBe(original);
     });
 
-
     function serializeInline(messages: Messages): string {
       const lines: string[] = [];
 
