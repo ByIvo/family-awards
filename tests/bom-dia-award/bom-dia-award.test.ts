@@ -15,13 +15,21 @@ describe("Bom dia Award", () => {
       "author": "Tia Nete",
       "datetime": new Date("2025-11-27T07:02:22.000-03:00"),
       "message": "Nada de mais",
+    },{
+      "author": "Gueto",
+      "datetime": new Date("2025-11-27T07:02:22.000-03:00"),
+      "message": "bom dimais",
     }]);
   });
 
   it('should process bom dia messages', () => {
     const result = BomDiaProcessor.run(messages);
     expect(result.results).toEqual({
-      "Gueto": 7
+      "Gueto": 11,
+      "Madrinha": 2,
+      "Tia Nete": 1,
+      "Pai - Novo": 1,
+      "Lucia": 1
     });
   });
 });

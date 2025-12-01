@@ -7,8 +7,12 @@ export const BomDiaProcessor = {
   run(messages: Messages): ProcessorResult {
     
     const regexes = [
-      /\bbom\s+dia+\b/iu,
+      /\bb+o+m+[\s-]+d+i+a+\b/iu,
       /^d+i+a+$/iu,
+      /\bbom\s+giorno+\b/iu,
+      /^bom di\w$/iu,
+      /bo.\s?dia/iu,
+      /bim dia+$/iu,
     ];
 
     const results: Record<string, number> = {};
