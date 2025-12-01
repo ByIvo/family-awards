@@ -1,5 +1,5 @@
-import { Messages } from "../core/types";
-import { ProcessorResult } from "./types";
+import { Messages, ProcessorResult } from "../core/types";
+
 
 export const MoreMessagesSentProcessor = {
     name: "more-messages-sent",

@@ -1,7 +1,6 @@
-import { Messages } from "../core/types";
-import { ProcessorResult } from "./types";
+import { Messages, Processor, ProcessorResult } from "../core/types";
 
-export const BomDiaProcessor = {
+export const BomDiaProcessor: Processor = {
   name: "bom-dia",
 
   run(messages: Messages): ProcessorResult {

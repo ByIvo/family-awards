@@ -2,18 +2,23 @@ import * as fs from "fs/promises";
 import * as path from "path";
 import { parseMessagesFromFile } from "./core/parser";
 import { serializeMessagesToFile } from "./core/serializer";
-import { BomDiaProcessor } from "./processors/bom-dia.processor";
 import { Messages } from "./core/types";
+import * as processors from "./processors";
 
 async function main() {
   const inputFile = getInputFile();
   const messages = parseMessagesFromFile(inputFile);
-  const processorResult = BomDiaProcessor.run(messages);
+  
+  
 
-  const dirPath = await ensureProcessorOutputDir("bom-dia");
-  await writeResultsJson(dirPath, processorResult.results);
-  await writeTxt(dirPath, 'remanescent', processorResult.remanescent);
-  await writeTxt(dirPath, 'processed', processorResult.processed);
+  for(const processor of Object.values(processors)) {
+    const processorResult = await processor.run(messages);
+
+    const dirPath = await ensureProcessorOutputDir(processor.name);
+    await writeResultsJson(dirPath, processorResult.results);
+    await writeTxt(dirPath, 'remanescent', processorResult.remanescent);
+    await writeTxt(dirPath, 'processed', processorResult.processed);
+  }
 
   console.log("Done.");
 }

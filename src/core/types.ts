@@ -5,3 +5,14 @@ export interface Message {
 };
 
 export type Messages = Message[];
+
+export type Processor = {
+  name: string;
+  run(messages: Messages): ProcessorResult;
+}
+
+export type ProcessorResult = {
+  results: Record<string, any>;
+  remanescent: Messages;
+  processed: Messages;
+};
